@@ -21,14 +21,15 @@
     oh-my-zsh	
   ];
   #home.file = {};
-  #home.sessionVariables = {};
+  home.sessionVariables = {
+    EDITOR = "code --wait";
+    VISUAL = "code --wait";
+    GIT_EDITOR = "code --wait";
+    PAGER = "less -R";
+    LESS = "-R";
+    NIX_PATH = "";
+  };
 
-  # Homebrew configuration for additional packages/casks
-  # homebrew = {
-  #   enable = true;
-  #   # brews = [ "podman" ];
-  #   # casks = [ "podman-desktop" ];
-  # };
   programs.home-manager.enable = true;
 
   programs.git = {
@@ -78,11 +79,21 @@
       tf = "terraform";
       tg = "terragrunt";
       glogin = "gcloud auth application-default login";
-      nix-rebuild = "sudo darwin-rebuild switch --flake ˜/git/nix-config";
+      nixrb = "sudo darwin-rebuild switch --flake . --impure";
     };
+    sessionVariables = {
+      FZF_DEFAULT_COMMAND = "fd --type f --hidden --follow --exclude .git";
+      FZF_DEFAULT_OPTS = "--height 40% --layout=reverse --border";
+      FZF_BASE = "${pkgs.fzf}/bin/fzf";
+    };
+    initContent = ''
+      export FZF_BASE=${pkgs.fzf}/bin
+      source /etc/aignostics/
+    '';
+
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "docker" "kubectl" "python" "fzf" "brew" "zsh-autosuggestions" "uv" ];
+      plugins = [ "git" "docker" "kubectl" "python" "fzf" "brew" "uv" ];
       theme = "robbyrussell";
     };
   };
