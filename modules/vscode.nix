@@ -40,7 +40,10 @@
         "nix.serverPath" = "nil";
         "nil" = {
           "formatting" = {
-            "command" = [ "nixfmt" ];
+            "command" = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ];
+          };
+          "diagnostics" = {
+            "ignored" = [ "unused_binding" "unused_with" ];
           };
         };
         "[nix]" = {
