@@ -1,6 +1,13 @@
 # Pre-commit hooks configuration for Nix project
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
+#
+# AUTO-FIX ENABLED: Most hooks will automatically fix issues when possible
+# - trailing-whitespace, end-of-file-fixer: Auto-fix formatting
+# - mixed-line-ending: Auto-fix to LF line endings
+# - nixpkgs-fmt: Auto-format Nix code
+# - statix: Auto-fix Nix linting issues
+# - deadnix: Auto-remove dead code (with safety options)
 
 repos:
   # General file checks
@@ -33,22 +40,22 @@ repos:
   #   hooks:
   #     - id: nixfmt
 
-  # Nix linting with statix (local)
+  # Nix linting with statix (local) - with auto-fix
   - repo: local
     hooks:
       - id: statix
         name: statix
-        entry: statix check
+        entry: statix fix
         language: system
         files: '\.nix$'
         pass_filenames: false
 
-  # Dead code elimination
+  # Dead code elimination with auto-fix
   - repo: https://github.com/astro/deadnix
     rev: v1.3.0
     hooks:
       - id: deadnix
-        args: [--edit]
+        args: [--edit, --no-lambda-arg, --no-lambda-pattern-names]
 
   # Git hooks for better commit messages with conventional commits
   - repo: https://github.com/jorisroovers/gitlint
