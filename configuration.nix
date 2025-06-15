@@ -14,10 +14,12 @@
     curl
     gitAndTools.gitFull
     nmap
-    htop
     zellij
     micro
     rectangle
+    # Additional system tools
+    mas          # Mac App Store CLI
+    dockutil     # Dock management
   ];
 
 

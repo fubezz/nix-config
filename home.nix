@@ -21,6 +21,18 @@
     oh-my-zsh
     fzf
     fd
+    # Additional useful tools
+    ripgrep       # Fast grep alternative
+    bat           # Better cat with syntax highlighting
+    eza           # Better ls with colors and git status (exa replacement)
+    tree          # Directory tree visualization
+    jq            # JSON processor
+    yq            # YAML processor
+    htop          # Better top
+    diff-so-fancy # Better git diff
+    gh            # GitHub CLI
+    lazygit       # Terminal UI for git
+    direnv        # Per-directory environment variables
   ];
   #home.file = {};
   home.sessionVariables = {
@@ -41,6 +53,9 @@
       github.user = "fubezz";
       init = { defaultBranch = "develop"; };
       diff = { external = "${pkgs.difftastic}/bin/difft"; };
+      pull = { rebase = true; };
+      push = { autoSetupRemote = true; };
+      core = { editor = "code --wait"; };
     };
   };
 
@@ -63,6 +78,14 @@
         extensions = with pkgs.vscode-marketplace; [
           jnoortheen.nix-ide
           dracula-theme.theme-dracula
+          # Additional useful extensions
+          redhat.vscode-yaml
+          hashicorp.terraform
+          ms-kubernetes-tools.vscode-kubernetes-tools
+          github.vscode-pull-request-github
+          eamodio.gitlens
+          ms-python.python
+          ms-python.black-formatter
         ];
       };
       
@@ -71,16 +94,31 @@
   programs.zsh = {
     enable = true;
     shellAliases = {
-      ll = "ls -l";
-      la = "ls -la";
-      l = "ls -lAh";
+      # Enhanced ls aliases using eza
+      ll = "eza -l --git";
+      la = "eza -la --git";
+      l = "eza -lah --git";
+      ls = "eza";
+      tree = "eza --tree";
+      # Git aliases
       g = "git";
+      gst = "git status";
+      ga = "git add";
+      gc = "git commit";
+      gp = "git push";
+      gl = "git pull";
+      # Kubernetes aliases
       k = "kubectl";
       k9s = "k9s";
+      # Infrastructure aliases
       tf = "terraform";
       tg = "terragrunt";
+      # Cloud aliases
       glogin = "gcloud auth application-default login";
+      # System aliases
       nixrb = "sudo darwin-rebuild switch --flake . --impure";
+      cat = "bat";
+      grep = "rg";
     };
     sessionVariables = {
       FZF_DEFAULT_COMMAND = "fd --type f --hidden --follow --exclude .git";
@@ -88,11 +126,13 @@
     };
     initContent = ''
       source /etc/aignostics/
+      # Enable direnv
+      eval "$(direnv hook zsh)"
     '';
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "docker" "kubectl" "python" "uv" ];
+      plugins = [ "git" "docker" "kubectl" "python" "uv" "direnv" ];
       theme = "robbyrussell";
     };
   };
@@ -109,6 +149,30 @@
       KeyRepeat = 1;
       # Set initial key repeat delay to shortest (10 = very short delay)
       InitialKeyRepeat = 10;
+      # Disable natural scrolling
+      "com.apple.swipescrolldirection" = false;
+      # Enable full keyboard access for all controls
+      AppleKeyboardUIMode = 3;
+      # Disable press-and-hold for keys in favor of key repeat
+      ApplePressAndHoldEnabled = false;
+    };
+    dock = {
+      # Auto-hide the dock
+      autohide = true;
+      # Remove the auto-hiding delay
+      autohide-delay = 0.0;
+      # Remove the animation when hiding/showing the Dock
+      autohide-time-modifier = 0.0;
+      # Show only open applications in the Dock
+      static-only = true;
+    };
+    finder = {
+      # Show all filename extensions
+      AppleShowAllExtensions = true;
+      # Show path bar
+      ShowPathbar = true;
+      # Show status bar
+      ShowStatusBar = true;
     };
   };
 }
