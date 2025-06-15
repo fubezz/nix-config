@@ -50,19 +50,17 @@ repos:
       - id: deadnix
         args: [--edit]
 
-  # Conventional commits with commitizen
-  - repo: https://github.com/commitizen-tools/commitizen
-    rev: v3.29.1
-    hooks:
-      - id: commitizen
-        stages: [commit-msg]
-
-  # Git hooks for better commit messages
+  # Git hooks for better commit messages with conventional commits
   - repo: https://github.com/jorisroovers/gitlint
     rev: v0.19.1
     hooks:
       - id: gitlint
         stages: [commit-msg]
+        args:
+          [
+            --contrib=contrib-title-conventional-commits,
+            --ignore=body-is-missing,
+          ]
 
 # Global exclusions
 exclude: |

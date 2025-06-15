@@ -17,7 +17,8 @@ ignore-revert-commits=true
 # Set the verbosity level
 verbosity=2
 
-# Enable regex rules
+# Enable contrib rules for conventional commits
+contrib=contrib-title-conventional-commits
 contrib=contrib-title-conventional-commits
 
 [title-max-length]
