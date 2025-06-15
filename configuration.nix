@@ -56,6 +56,7 @@
     enable = true;
     casks = [
       "container" # Apple's container tool for creating and running Linux containers
+      "slack"
     ];
     onActivation = {
       cleanup = "zap";
