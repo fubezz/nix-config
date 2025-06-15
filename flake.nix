@@ -40,7 +40,7 @@
       userConfig = import ./user.nix;
       machineConfig = {
         system = userConfig.system.platform;
-        hostname = userConfig.system.hostname;
+        inherit (userConfig.system) hostname;
         username = userConfig.user.name;
         home = userConfig.system.homeDirectory;
         homeManager.stateVersion = "25.05";
