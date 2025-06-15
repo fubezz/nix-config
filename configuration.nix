@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
 
@@ -13,8 +13,6 @@
     # Essential system tools
     gitAndTools.gitFull
     nmap
-    zellij
-    micro
     rectangle
 
     # Mac-specific tools
