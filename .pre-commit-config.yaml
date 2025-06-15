@@ -50,21 +50,12 @@ repos:
       - id: deadnix
         args: [--edit]
 
-  # Security scanning (disabled due to gibberish detector dependency issue)
-  # - repo: https://github.com/Yelp/detect-secrets
-  #   rev: v1.5.0
-  #   hooks:
-  #     - id: detect-secrets
-  #       args:
-  #         ["--baseline", ".secrets.baseline", "--disable-filter", "gibberish"]
-  #       exclude: 'flake\.lock$|\.patch$'
-
-  # Conventional commits (disabled for now)
-  # - repo: https://github.com/compilerla/conventional-pre-commit
-  #   rev: v4.2.0
-  #   hooks:
-  #     - id: conventional-pre-commit
-  #       stages: [commit-msg]
+  # Conventional commits with commitizen
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v3.29.1
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
 
   # Git hooks for better commit messages
   - repo: https://github.com/jorisroovers/gitlint
