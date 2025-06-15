@@ -1,5 +1,8 @@
 { pkgs, ... }:
 
+let
+  userConfig = import ../user.nix;
+in
 {
   programs = {
     zsh = {
@@ -87,11 +90,11 @@
 
     git = {
       enable = true;
-      userName = "Fabin Spiess";
-      userEmail = "fabian@aignostics.com";
+      userName = userConfig.user.fullName;
+      userEmail = userConfig.user.email;
       extraConfig = {
-        github.user = "fubezz";
-        init = { defaultBranch = "develop"; };
+        github.user = userConfig.git.githubUsername;
+        init = { inherit (userConfig.git) defaultBranch; };
         diff = { external = "${pkgs.difftastic}/bin/difft"; };
         pull = { rebase = true; };
         push = { autoSetupRemote = true; };

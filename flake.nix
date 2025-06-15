@@ -37,11 +37,12 @@
     }:
 
     let
+      userConfig = import ./user.nix;
       machineConfig = {
-        system = "aarch64-darwin";
-        hostname = "fabian-MacBook-Pro";
-        username = "fabian";
-        home = "/Users/fabian";
+        system = userConfig.system.platform;
+        hostname = userConfig.system.hostname;
+        username = userConfig.user.name;
+        home = userConfig.system.homeDirectory;
         homeManager.stateVersion = "25.05";
       };
       pkgs = import nixpkgs {
@@ -72,7 +73,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.fabian = import ./home.nix;
+              users.${userConfig.user.name} = import ./home.nix;
               # To enable spotlight for all users:
               sharedModules = [
                 mac-app-util.homeManagerModules.default
@@ -88,7 +89,7 @@
               # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
               enableRosetta = true;
               # User owning the Homebrew prefix
-              user = "fabian";
+              user = userConfig.user.name;
               # Automatically migrate existing Homebrew installations
               autoMigrate = true;
             };

@@ -1,11 +1,14 @@
 { lib, pkgs, ... }:
 
+let
+  userConfig = import ./user.nix;
+in
 {
 
-  system.primaryUser = "fabian";
-  users.users.fabian = {
-    name = "fabian";
-    home = "/Users/fabian";
+  system.primaryUser = userConfig.user.name;
+  users.users.${userConfig.user.name} = {
+    inherit (userConfig.user) name;
+    home = userConfig.user.homeDirectory;
   };
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
@@ -46,7 +49,7 @@
   system.stateVersion = 6;
 
   # The platform the configuration will be used on.
-  nixpkgs.hostPlatform = "aarch64-darwin";
+  nixpkgs.hostPlatform = userConfig.system.platform;
   nixpkgs.config = {
     allowUnfree = true;
   };

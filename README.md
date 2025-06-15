@@ -50,9 +50,16 @@ A modular and comprehensive Nix-based development environment for macOS using [n
    cd ~/.config/nix-darwin
    ```
 
-2. **Update the configuration** in `flake.nix`:
-   - Change `machineConfig.hostname` to your machine name
-   - Update `machineConfig.username` and `machineConfig.home` to your user details
+2. **Create your user configuration**:
+   ```bash
+   cp user.nix.template user.nix
+   ```
+
+   Then edit `user.nix` with your personal information:
+   - Update `user.name`, `user.fullName`, and `user.email`
+   - Set your `user.homeDirectory` (usually `/Users/your-username`)
+   - Configure `system.hostname` to match your machine
+   - Set your preferred `git.githubUsername` and `git.defaultBranch`
 
 3. **Apply the configuration**:
    ```bash

@@ -1,5 +1,8 @@
-{ ... }:
+_:
 
+let
+  userConfig = import ./user.nix;
+in
 {
   # Import modular configurations
   imports = [
@@ -11,8 +14,8 @@
 
   # Basic home-manager configuration
   home = {
-    username = "fabian";
-    homeDirectory = "/Users/fabian";
+    username = userConfig.user.name;
+    inherit (userConfig.user) homeDirectory;
     stateVersion = "25.05"; # Please read the comment before changing.
 
     # Session variables

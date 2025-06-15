@@ -1,0 +1,23 @@
+# User configuration template - copy to user.nix and customize
+# This file contains placeholders for personal information
+{
+  # Personal information - UPDATE THESE VALUES
+  user = {
+    name = "your-username";
+    fullName = "Your Full Name";
+    email = "your.email@example.com";
+    homeDirectory = "/Users/your-username";
+  };
+
+  # System information - UPDATE THESE VALUES
+  system = {
+    hostname = "your-hostname";
+    platform = "aarch64-darwin"; # or "x86_64-darwin" for Intel Macs
+  };
+
+  # Application preferences - CUSTOMIZE AS NEEDED
+  git = {
+     defaultBranch = "main"; # or "develop", "master", etc.
+     githubUsername = "your-github-username";
+  };
+}
