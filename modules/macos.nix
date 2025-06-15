@@ -15,7 +15,7 @@
       # Disable press-and-hold for keys in favor of key repeat
       ApplePressAndHoldEnabled = false;
     };
-    
+
     dock = {
       # Auto-hide the dock
       autohide = true;
@@ -26,7 +26,7 @@
       # Show only open applications in the Dock
       static-only = true;
     };
-    
+
     finder = {
       # Show all filename extensions
       AppleShowAllExtensions = true;

@@ -14,6 +14,7 @@
 
     # Nix development tools
     nil           # Nix language server
+    nixfmt-rfc-style  # Nix formatter
 
     # Cloud tools
     (google-cloud-sdk.withExtraComponents [

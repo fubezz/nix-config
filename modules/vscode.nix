@@ -38,9 +38,15 @@
           # Nix-specific settings
           "nix.enableLanguageServer" = true;
           "nix.serverPath" = "nil";
+          "nil" = {
+            "formatting" = {
+              "command" = [ "nixfmt" ];
+            };
+          };
           "[nix]" = {
             "editor.defaultFormatter" = "jnoortheen.nix-ide";
             "editor.tabSize" = 2;
+            "editor.formatOnSave" = true;
           };
 
           # File associations
