@@ -1,0 +1,87 @@
+# Pre-commit hooks configuration for Nix project
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
+repos:
+  # General file checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: '\.patch$'
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-added-large-files
+        args: ["--maxkb=1000"]
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: check-executables-have-shebangs
+      - id: check-shebang-scripts-are-executable
+      - id: mixed-line-ending
+        args: ["--fix=lf"]
+
+  # Nix specific hooks
+  - repo: https://github.com/nix-community/nixpkgs-fmt
+    rev: v1.3.0
+    hooks:
+      - id: nixpkgs-fmt
+
+  # Alternative Nix formatter (if you prefer nixfmt over nixpkgs-fmt)
+  # - repo: https://github.com/serokell/nixfmt
+  #   rev: v0.5.0
+  #   hooks:
+  #     - id: nixfmt
+
+  # Nix linting with statix (local)
+  - repo: local
+    hooks:
+      - id: statix
+        name: statix
+        entry: statix check
+        language: system
+        files: '\.nix$'
+        pass_filenames: false
+
+  # Dead code elimination
+  - repo: https://github.com/astro/deadnix
+    rev: v1.3.0
+    hooks:
+      - id: deadnix
+        args: [--edit]
+
+  # Security scanning (disabled due to gibberish detector dependency issue)
+  # - repo: https://github.com/Yelp/detect-secrets
+  #   rev: v1.5.0
+  #   hooks:
+  #     - id: detect-secrets
+  #       args:
+  #         ["--baseline", ".secrets.baseline", "--disable-filter", "gibberish"]
+  #       exclude: 'flake\.lock$|\.patch$'
+
+  # Conventional commits (disabled for now)
+  # - repo: https://github.com/compilerla/conventional-pre-commit
+  #   rev: v4.2.0
+  #   hooks:
+  #     - id: conventional-pre-commit
+  #       stages: [commit-msg]
+
+  # Git hooks for better commit messages
+  - repo: https://github.com/jorisroovers/gitlint
+    rev: v0.19.1
+    hooks:
+      - id: gitlint
+        stages: [commit-msg]
+
+# Global exclusions
+exclude: |
+  (?x)^(
+    \.git/.*|
+    \.direnv/.*|
+    result.*|
+    \.pre-commit-config\.yaml
+  )$
+
+# Default language version for hooks
+default_language_version:
+  python: python3

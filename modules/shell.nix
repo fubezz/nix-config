@@ -1,106 +1,108 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  programs.zsh = {
-    enable = true;
-    shellAliases = {
-      # Enhanced ls aliases using eza
-      ll = "eza -l --git";
-      la = "eza -la --git";
-      l = "eza -lah --git";
-      ls = "eza";
-      tree = "eza --tree";
-
-      # Git aliases
-      g = "git";
-      gst = "git status";
-      ga = "git add";
-      gc = "git commit";
-      gp = "git push";
-      gl = "git pull";
-      gd = "git diff";
-      gb = "git branch";
-      gco = "git checkout";
-      glg = "git log --graph --oneline --decorate";
-
-      # Kubernetes aliases
-      k = "kubectl";
-      k9s = "k9s";
-      kgp = "kubectl get pods";
-      kgs = "kubectl get services";
-      kgd = "kubectl get deployments";
-
-      # Infrastructure aliases
-      tf = "terraform";
-      tg = "terragrunt";
-      tfi = "terraform init";
-      tfp = "terraform plan";
-      tfa = "terraform apply";
-
-      # Cloud aliases
-      glogin = "gcloud auth application-default login";
-
-      # System aliases
-      nixrb = "sudo darwin-rebuild switch --flake . --impure";
-      cat = "bat";
-      grep = "rg";
-      find = "fd";
-      ps = "procs";
-      top = "btm";
-      du = "dust";
-
-      # Docker aliases
-      d = "docker";
-      dc = "docker-compose";
-      dps = "docker ps";
-      di = "docker images";
-
-      # Useful shortcuts
-      cls = "clear";
-      reload = "source ~/.zshrc";
-      edit = "code";
-      vim = "nvim";
-      vi = "nvim";
-
-      # Network utilities
-      ports = "lsof -i -P -n | grep LISTEN";
-      myip = "curl -s https://httpbin.org/ip | jq -r .origin";
-    };
-
-    sessionVariables = {
-      FZF_DEFAULT_COMMAND = "fd --type f --hidden --follow --exclude .git";
-      FZF_DEFAULT_OPTS = "--height 40% --layout=reverse --border";
-    };
-
-    initContent = ''
-      source /etc/aignostics/
-      # Enable direnv
-      eval "$(direnv hook zsh)"
-    '';
-
-    oh-my-zsh = {
+  programs = {
+    zsh = {
       enable = true;
-      plugins = [ "git" "docker" "kubectl" "python" "uv" "direnv" ];
-      theme = "robbyrussell";
+      shellAliases = {
+        # Enhanced ls aliases using eza
+        ll = "eza -l --git";
+        la = "eza -la --git";
+        l = "eza -lah --git";
+        ls = "eza";
+        tree = "eza --tree";
+
+        # Git aliases
+        g = "git";
+        gst = "git status";
+        ga = "git add";
+        gc = "git commit";
+        gp = "git push";
+        gl = "git pull";
+        gd = "git diff";
+        gb = "git branch";
+        gco = "git checkout";
+        glg = "git log --graph --oneline --decorate";
+
+        # Kubernetes aliases
+        k = "kubectl";
+        k9s = "k9s";
+        kgp = "kubectl get pods";
+        kgs = "kubectl get services";
+        kgd = "kubectl get deployments";
+
+        # Infrastructure aliases
+        tf = "terraform";
+        tg = "terragrunt";
+        tfi = "terraform init";
+        tfp = "terraform plan";
+        tfa = "terraform apply";
+
+        # Cloud aliases
+        glogin = "gcloud auth application-default login";
+
+        # System aliases
+        nixrb = "sudo darwin-rebuild switch --flake . --impure";
+        cat = "bat";
+        grep = "rg";
+        find = "fd";
+        ps = "procs";
+        top = "btm";
+        du = "dust";
+
+        # Docker aliases
+        d = "docker";
+        dc = "docker-compose";
+        dps = "docker ps";
+        di = "docker images";
+
+        # Useful shortcuts
+        cls = "clear";
+        reload = "source ~/.zshrc";
+        edit = "code";
+        vim = "nvim";
+        vi = "nvim";
+
+        # Network utilities
+        ports = "lsof -i -P -n | grep LISTEN";
+        myip = "curl -s https://httpbin.org/ip | jq -r .origin";
+      };
+
+      sessionVariables = {
+        FZF_DEFAULT_COMMAND = "fd --type f --hidden --follow --exclude .git";
+        FZF_DEFAULT_OPTS = "--height 40% --layout=reverse --border";
+      };
+
+      initContent = ''
+        source /etc/aignostics/
+        # Enable direnv
+        eval "$(direnv hook zsh)"
+      '';
+
+      oh-my-zsh = {
+        enable = true;
+        plugins = [ "git" "docker" "kubectl" "python" "uv" "direnv" ];
+        theme = "robbyrussell";
+      };
     };
-  };
 
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = true;
-  };
+    fzf = {
+      enable = true;
+      enableZshIntegration = true;
+    };
 
-  programs.git = {
-    enable = true;
-    userName = "Fabin Spiess";
-    userEmail = "fabian@aignostics.com";
-    extraConfig = {
-      github.user = "fubezz";
-      init = { defaultBranch = "develop"; };
-      diff = { external = "${pkgs.difftastic}/bin/difft"; };
-      pull = { rebase = true; };
-      push = { autoSetupRemote = true; };
-      core = { editor = "code --wait"; };
+    git = {
+      enable = true;
+      userName = "Fabin Spiess";
+      userEmail = "fabian@aignostics.com";
+      extraConfig = {
+        github.user = "fubezz";
+        init = { defaultBranch = "develop"; };
+        diff = { external = "${pkgs.difftastic}/bin/difft"; };
+        pull = { rebase = true; };
+        push = { autoSetupRemote = true; };
+        core = { editor = "code --wait"; };
+      };
     };
   };
 

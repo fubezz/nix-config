@@ -6,8 +6,8 @@
     nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager = {
-        url = "github:nix-community/home-manager/release-25.05";
-        inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
     # Optional: Declarative tap management
@@ -19,70 +19,81 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
-    mac-app-util.url = "github:hraban/mac-app-util";   
+    mac-app-util.url = "github:hraban/mac-app-util";
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
-    }; 
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew
-    , homebrew-core, homebrew-cask, mac-app-util, nix-vscode-extensions, ...  }:
+  outputs =
+    { nix-darwin
+    , nixpkgs
+    , home-manager
+    , nix-homebrew
+    , mac-app-util
+    , nix-vscode-extensions
+    , ...
+    }:
 
-   let 
-     machineConfig = {
-       system = "aarch64-darwin";
-       hostname = "fabian-MacBook-Pro";
-       username = "fabian";
-       home = "/Users/fabian";
-       homeManager.stateVersion = "25.05";
-     };
-     pkgs = import nixpkgs {
-       overlays = [ nix-vscode-extensions.overlays.default ];
-       system = machineConfig.system;
-       config = {
-         allowUnfree = true;
-         allowUnfreePredicate = (_: true);
-         #allowBroken = true;
-         allowInsecure = false;
-       };
-     };
-   in
-   {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#MacBook-Pro
-    darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
-      inherit pkgs;
-      modules = [ 
-        ./configuration.nix
+    let
+      machineConfig = {
+        system = "aarch64-darwin";
+        hostname = "fabian-MacBook-Pro";
+        username = "fabian";
+        home = "/Users/fabian";
+        homeManager.stateVersion = "25.05";
+      };
+      pkgs = import nixpkgs {
+        overlays = [ nix-vscode-extensions.overlays.default ];
+        inherit (machineConfig) system;
+        config = {
+          allowUnfree = true;
+          allowUnfreePredicate = _: true;
+          #allowBroken = true;
+          allowInsecure = false;
+        };
+      };
+    in
+    {
+      # Build darwin flake using:
+      # $ darwin-rebuild build --flake .#MacBook-Pro
+      darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
+        inherit (machineConfig) system;
+        inherit pkgs;
+        modules = [
+          ./configuration.nix
 
-        mac-app-util.darwinModules.default
+          mac-app-util.darwinModules.default
 
-        home-manager.darwinModules.home-manager {
-           # `home-manager` config
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.fabian = import ./home.nix;
-          # To enable spotlight for all users:
-          home-manager.sharedModules = [
-            mac-app-util.homeManagerModules.default
-          ];
-        }
+          home-manager.darwinModules.home-manager
+          {
+            # `home-manager` config
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.fabian = import ./home.nix;
+              # To enable spotlight for all users:
+              sharedModules = [
+                mac-app-util.homeManagerModules.default
+              ];
+            };
+          }
 
-        nix-homebrew.darwinModules.nix-homebrew
-	      {
-	        nix-homebrew = {
+          nix-homebrew.darwinModules.nix-homebrew
+          {
+            nix-homebrew = {
               # Install Homebrew under the default prefix
-              enable = true;  
+              enable = true;
               # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
               enableRosetta = true;
               # User owning the Homebrew prefix
               user = "fabian";
               # Automatically migrate existing Homebrew installations
               autoMigrate = true;
-            };  
-	      }         
-      ];
+            };
+          }
+        ];
+      };
     };
-  };
 }

@@ -1,11 +1,11 @@
 { config, lib, pkgs, ... }:
 
 {
-  
+
   system.primaryUser = "fabian";
   users.users.fabian = {
     name = "fabian";
-  	home = "/Users/fabian";
+    home = "/Users/fabian";
   };
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
@@ -16,27 +16,29 @@
     zellij
     micro
     rectangle
-    
+
     # Mac-specific tools
-    mas          # Mac App Store CLI
-    dockutil     # Dock management
+    mas # Mac App Store CLI
+    dockutil # Dock management
   ];
 
 
   # Necessary for using flakes on this system.
-  nix.settings = {
-    experimental-features = "nix-command flakes";
-    # Disable channels to avoid search path warnings
-    use-xdg-base-directories = true;
-    # Prevent looking for channels
-    nix-path = lib.mkForce [ ];
+  nix = {
+    settings = {
+      experimental-features = "nix-command flakes";
+      # Disable channels to avoid search path warnings
+      use-xdg-base-directories = true;
+      # Prevent looking for channels
+      nix-path = lib.mkForce [ ];
+    };
+
+    # Use the proper way to enable store optimization on macOS
+    optimise.automatic = true;
+
+    # Disable channels completely since we're using flakes
+    channel.enable = false;
   };
-  
-  # Use the proper way to enable store optimization on macOS
-  nix.optimise.automatic = true;
-  
-  # Disable channels completely since we're using flakes
-  nix.channel.enable = false;
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true; # default shell on catalina
   # programs.fish.enable = true;

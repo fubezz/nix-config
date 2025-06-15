@@ -1,0 +1,46 @@
+# Gitlint configuration for commit message linting
+# See https://jorisroovers.com/gitlint/latest/configuration/ for details
+
+[general]
+# Ignore merge commits
+ignore-merge-commits=true
+
+# Ignore fixup commits
+ignore-fixup-commits=true
+
+# Ignore squash commits
+ignore-squash-commits=true
+
+# Ignore revert commits
+ignore-revert-commits=true
+
+# Set the verbosity level
+verbosity=2
+
+# Enable regex rules
+contrib=contrib-title-conventional-commits
+
+[title-max-length]
+line-length=72
+
+[title-min-length]
+min-length=5
+
+[title-must-not-contain-word]
+words=wip,WIP,fixup,squash
+
+[body-max-line-length]
+line-length=120
+
+[body-min-length]
+min-length=20
+
+[body-is-missing]
+ignore-merge-commits=true
+
+[body-changed-file-mention]
+files=flake.nix,flake.lock
+
+# Conventional commits configuration
+[contrib-title-conventional-commits]
+types=build,chore,ci,docs,feat,fix,perf,refactor,revert,style,test

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ ... }:
 
 {
   # Import modular configurations
@@ -10,20 +10,21 @@
   ];
 
   # Basic home-manager configuration
-  home.username = "fabian";
-  home.homeDirectory = "/Users/fabian";
-  home.stateVersion = "25.05"; # Please read the comment before changing.
+  home = {
+    username = "fabian";
+    homeDirectory = "/Users/fabian";
+    stateVersion = "25.05"; # Please read the comment before changing.
 
-  # Session variables
-  home.sessionVariables = {
-    EDITOR = "code --wait";
-    VISUAL = "code --wait";
-    GIT_EDITOR = "code --wait";
-    PAGER = "less -R";
-    LESS = "-R";
+    # Session variables
+    sessionVariables = {
+      EDITOR = "code --wait";
+      VISUAL = "code --wait";
+      GIT_EDITOR = "code --wait";
+      PAGER = "less -R";
+      LESS = "-R";
+    };
   };
 
   # Enable home-manager
   programs.home-manager.enable = true;
 }
-
