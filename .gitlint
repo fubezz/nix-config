@@ -19,7 +19,6 @@ verbosity=2
 
 # Enable contrib rules for conventional commits
 contrib=contrib-title-conventional-commits
-contrib=contrib-title-conventional-commits
 
 [title-max-length]
 line-length=72
