@@ -2,8 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    # Container and orchestration tools
-    podman
+    # Essential kubernetes tools
     kubectl
     kubernetes-helm
     k9s

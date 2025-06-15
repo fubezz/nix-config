@@ -50,12 +50,6 @@
         top = "btm";
         du = "dust";
 
-        # Docker aliases
-        d = "docker";
-        dc = "docker-compose";
-        dps = "docker ps";
-        di = "docker images";
-
         # Useful shortcuts
         cls = "clear";
         reload = "source ~/.zshrc";
@@ -81,7 +75,7 @@
 
       oh-my-zsh = {
         enable = true;
-        plugins = [ "git" "docker" "kubectl" "python" "uv" "direnv" ];
+        plugins = [ "git" "kubectl" "python" "uv" "direnv" ];
         theme = "robbyrussell";
       };
     };

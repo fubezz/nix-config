@@ -50,4 +50,17 @@
   nixpkgs.config = {
     allowUnfree = true;
   };
+
+  # Homebrew configuration
+  homebrew = {
+    enable = true;
+    casks = [
+      "container" # Apple's container tool for creating and running Linux containers
+    ];
+    onActivation = {
+      cleanup = "zap";
+      autoUpdate = true;
+      upgrade = true;
+    };
+  };
 }
