@@ -22,7 +22,19 @@
 
 
   # Necessary for using flakes on this system.
-  nix.settings.experimental-features = "nix-command flakes";
+  nix.settings = {
+    experimental-features = "nix-command flakes";
+    # Disable channels to avoid search path warnings
+    use-xdg-base-directories = true;
+    # Prevent looking for channels
+    nix-path = lib.mkForce [ ];
+  };
+  
+  # Use the proper way to enable store optimization on macOS
+  nix.optimise.automatic = true;
+  
+  # Disable channels completely since we're using flakes
+  nix.channel.enable = false;
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true; # default shell on catalina
   # programs.fish.enable = true;

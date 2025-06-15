@@ -18,7 +18,9 @@
     (pkgs.python3.withPackages (python-pkgs: [
       python-pkgs.pipx
     ]))
-    oh-my-zsh	
+    oh-my-zsh
+    fzf
+    fd
   ];
   #home.file = {};
   home.sessionVariables = {
@@ -27,7 +29,6 @@
     GIT_EDITOR = "code --wait";
     PAGER = "less -R";
     LESS = "-R";
-    NIX_PATH = "";
   };
 
   programs.home-manager.enable = true;
@@ -84,17 +85,30 @@
     sessionVariables = {
       FZF_DEFAULT_COMMAND = "fd --type f --hidden --follow --exclude .git";
       FZF_DEFAULT_OPTS = "--height 40% --layout=reverse --border";
-      FZF_BASE = "${pkgs.fzf}/bin/fzf";
     };
     initContent = ''
-      export FZF_BASE=${pkgs.fzf}/bin
       source /etc/aignostics/
     '';
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "docker" "kubectl" "python" "fzf" "brew" "uv" ];
+      plugins = [ "git" "docker" "kubectl" "python" "uv" ];
       theme = "robbyrussell";
+    };
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  # Configure macOS defaults for fastest cursor speed
+  targets.darwin.defaults = {
+    NSGlobalDomain = {
+      # Set key repeat rate to fastest (1 = fastest, 2 = fast)
+      KeyRepeat = 1;
+      # Set initial key repeat delay to shortest (10 = very short delay)
+      InitialKeyRepeat = 10;
     };
   };
 }
