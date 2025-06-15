@@ -10,14 +10,14 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    neovim
-    curl
+    # Essential system tools
     gitAndTools.gitFull
     nmap
     zellij
     micro
     rectangle
-    # Additional system tools
+    
+    # Mac-specific tools
     mas          # Mac App Store CLI
     dockutil     # Dock management
   ];
