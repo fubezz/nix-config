@@ -71,7 +71,7 @@ in
       };
 
       initContent = ''
-        source /etc/aignostics/
+        source /etc/aignostics/main.sh
         # Enable direnv
         eval "$(direnv hook zsh)"
       '';
