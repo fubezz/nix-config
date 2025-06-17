@@ -42,7 +42,7 @@ in
         tfa = "terraform apply";
 
         # Cloud aliases
-        glogin = "gcloud auth application-default login";
+        glogin = "gcloud auth login --update-adc";
 
         # System aliases
         nixrb = "sudo darwin-rebuild switch --flake . --impure";
