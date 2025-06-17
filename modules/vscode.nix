@@ -38,14 +38,6 @@
         # Nix-specific settings
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "nil";
-        "nil" = {
-          "formatting" = {
-            "command" = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ];
-          };
-          "diagnostics" = {
-            "ignored" = [ "unused_binding" "unused_with" ];
-          };
-        };
         "[nix]" = {
           "editor.defaultFormatter" = "jnoortheen.nix-ide";
           "editor.tabSize" = 2;
@@ -56,6 +48,25 @@
         "files.associations" = {
           "*.nix" = "nix";
           "flake.lock" = "json";
+          "*.hcl" = "terraform";
+          "terragrunt.hcl" = "terraform";
+          "*.terragrunt" = "terraform";
+        };
+
+        # Terraform-specific settings
+        "terraform.experimentalFeatures.validateOnSave" = true;
+        "terraform.experimentalFeatures.prefillRequiredFields" = true;
+        "[terraform]" = {
+          "editor.defaultFormatter" = "hashicorp.terraform";
+          "editor.formatOnSave" = true;
+          "editor.tabSize" = 2;
+          "editor.insertSpaces" = true;
+        };
+        "[terraform-vars]" = {
+          "editor.defaultFormatter" = "hashicorp.terraform";
+          "editor.formatOnSave" = true;
+          "editor.tabSize" = 2;
+          "editor.insertSpaces" = true;
         };
       };
 
@@ -82,7 +93,6 @@
         ms-kubernetes-tools.vscode-kubernetes-tools
 
         # Git integration
-        github.vscode-pull-request-github
         eamodio.gitlens
       ];
     };

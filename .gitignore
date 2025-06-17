@@ -7,3 +7,4 @@ result-*
 
 # Ignore personal user configuration
 user.nix
+flake.lock
