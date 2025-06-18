@@ -61,6 +61,7 @@ in
       "container" # Apple's container tool for creating and running Linux containers
       "ghostty" # Modern terminal emulator
       "slack"
+      "stats"
     ];
     onActivation = {
       cleanup = "zap";

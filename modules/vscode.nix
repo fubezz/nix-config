@@ -43,6 +43,16 @@
           "editor.tabSize" = 2;
           "editor.formatOnSave" = true;
         };
+        "nix.serverSettings" = {
+          "nil" = {
+            "formatting" = {
+              "command" = [ "nixpkgs-fmt" ];
+            };
+            "diagnostics" = {
+              "ignored" = [ "unused_binding" "unused_with" ];
+            };
+          };
+        };
 
         # File associations
         "files.associations" = {
@@ -68,6 +78,7 @@
           "editor.tabSize" = 2;
           "editor.insertSpaces" = true;
         };
+
       };
 
       extensions = with pkgs.vscode-marketplace; [
