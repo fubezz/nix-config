@@ -118,7 +118,6 @@ in
     mouse-scroll-multiplier = 3
 
     # Theme
-    theme = dark
     background-opacity = 0.95
 
     # Shell integration
