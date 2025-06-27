@@ -53,6 +53,7 @@
 
     # Additional development tools
     neovim # Modern vim-based editor
+    micro
     curl # HTTP client
     wget # File downloader
     rsync # File synchronization
