@@ -68,6 +68,7 @@ in
       sessionVariables = {
         FZF_DEFAULT_COMMAND = "fd --type f --hidden --follow --exclude .git";
         FZF_DEFAULT_OPTS = "--height 40% --layout=reverse --border";
+        TERM = "xterm-256color";
       };
 
       initContent = ''
