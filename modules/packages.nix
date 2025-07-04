@@ -71,6 +71,7 @@
     shellcheck # Shell script linting
     yamllint # YAML linting
     pre-commit # Git pre-commit hooks
+    uv
 
     # Container tools
     dive # Docker image analysis
@@ -79,6 +80,8 @@
     git-lfs # Git Large File Storage
     git-crypt # Git encryption
     tig # Text-mode interface for git
+    git-credential-manager # Git credential management
+    gnupg # GPG for commit signing
 
     # JSON/YAML tools
     fx # JSON viewer

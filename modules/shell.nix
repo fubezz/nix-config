@@ -27,6 +27,10 @@ in
         gco = "git checkout";
         glg = "git log --graph --oneline --decorate";
 
+        # GPG aliases
+        gpglist = "gpg --list-secret-keys --keyid-format=long";
+        gpgsetkey = "git config user.signingkey";
+
         # Kubernetes aliases
         k = "kubectl";
         k9s = "k9s";
@@ -100,6 +104,25 @@ in
         pull = { rebase = true; };
         push = { autoSetupRemote = true; };
         core = { editor = "code --wait"; };
+
+        # Credential management for GitHub
+        credential = {
+          "https://github.com" = {
+            helper = "${pkgs.git-credential-manager}/bin/git-credential-manager";
+          };
+          helper = "${pkgs.git-credential-manager}/bin/git-credential-manager";
+        };
+
+        # GPG commit signing
+        commit = {
+          gpgsign = true;
+        };
+        tag = {
+          gpgsign = true;
+        };
+        gpg = {
+          format = "openpgp";
+        };
       };
     };
   };
