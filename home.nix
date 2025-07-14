@@ -8,8 +8,8 @@ in
   imports = [
     ./modules/packages.nix
     ./modules/shell.nix
-    ./modules/vscode.nix
     ./modules/macos.nix
+    ./config # This imports all config modules via default.nix
   ];
 
   # Basic home-manager configuration

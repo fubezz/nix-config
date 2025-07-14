@@ -6,6 +6,8 @@
     kubectl
     kubernetes-helm
     k9s
+    kind # Kubernetes in Docker - local clusters
+    argocd # ArgoCD CLI
 
     # Infrastructure as Code
     terraform
@@ -27,6 +29,9 @@
     (pkgs.python3.withPackages (python-pkgs: [
       python-pkgs.pipx
     ]))
+
+    # Go programming language
+    go
 
     # Shell and terminal tools
     oh-my-zsh
@@ -71,6 +76,7 @@
     shellcheck # Shell script linting
     yamllint # YAML linting
     pre-commit # Git pre-commit hooks
+    go-task # Task runner / build tool alternative to Make
     uv
 
     # Container tools
