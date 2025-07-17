@@ -82,29 +82,16 @@
       };
 
       extensions = with pkgs.vscode-marketplace; [
-        # Nix development
-        jnoortheen.nix-ide # Main Nix language support
-        bbenoist.nix # Additional Nix language support
-        arrterian.nix-env-selector # Nix environment selector
-        pinage404.nix-extension-pack # Nix extension pack
-
         # Theme
         dracula-theme.theme-dracula
 
         # Language support
         redhat.vscode-yaml
         hashicorp.terraform
-        ms-python.python
-        ms-python.black-formatter
-        ms-python.isort
-        ms-python.flake8 # Python linting
-        tamasfe.even-better-toml
-
-        # DevOps and cloud tools
-        ms-kubernetes-tools.vscode-kubernetes-tools
 
         # Git integration
         eamodio.gitlens
+        mhutchie.git-graph # Git repository graph visualization
       ];
     };
   };

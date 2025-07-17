@@ -116,10 +116,10 @@ in
 
         # GPG commit signing
         commit = {
-          gpgsign = true;
+          gpgsign = false;
         };
         tag = {
-          gpgsign = true;
+          gpgsign = false;
         };
         gpg = {
           format = "openpgp";
