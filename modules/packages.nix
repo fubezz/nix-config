@@ -51,6 +51,7 @@
     gh # GitHub CLI
     lazygit # Terminal UI for git
     direnv # Per-directory environment variables
+    go-task # For task management
 
     # Pre-commit and code quality tools
     gitlint # Git commit message linter
@@ -81,6 +82,8 @@
 
     # Container tools
     dive # Docker image analysis
+    docker # docker runtime
+    colima # docker desktop for terminal
 
     # Git tools
     git-lfs # Git Large File Storage
