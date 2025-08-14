@@ -56,6 +56,7 @@
     # Pre-commit and code quality tools
     gitlint # Git commit message linter
     detect-secrets # Secret detection tool
+    trivy # Vulnerability scanner for containers and files
 
     # Additional development tools
     neovim # Modern vim-based editor
@@ -65,6 +66,7 @@
     rsync # File synchronization
     unzip # Archive extraction
     zip # Archive creation
+    sipcalc # IP calculator
 
     # Network and system tools
     nmap # Network scanner
@@ -78,7 +80,7 @@
     yamllint # YAML linting
     pre-commit # Git pre-commit hooks
     go-task # Task runner / build tool alternative to Make
-    uv
+    uv # Universal command-line interface for running commands
 
     # Container tools
     dive # Docker image analysis

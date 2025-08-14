@@ -104,14 +104,13 @@ in
         diff = { external = "${pkgs.difftastic}/bin/difft"; };
         pull = { rebase = true; };
         push = { autoSetupRemote = true; };
-        core = { editor = "code --wait"; };
+        core = { editor = "micro"; };
 
         # Credential management for GitHub
         credential = {
           "https://github.com" = {
             helper = "${pkgs.git-credential-manager}/bin/git-credential-manager";
           };
-          helper = "${pkgs.git-credential-manager}/bin/git-credential-manager";
         };
 
         # GPG commit signing
