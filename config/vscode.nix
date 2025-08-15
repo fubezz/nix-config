@@ -58,9 +58,9 @@
         "files.associations" = {
           "*.nix" = "nix";
           "flake.lock" = "json";
-          "*.hcl" = "terraform";
-          "terragrunt.hcl" = "terraform";
-          "*.terragrunt" = "terraform";
+          "*.hcl" = "terragrunt";
+          "terragrunt.hcl" = "terragrunt";
+          "*.terragrunt" = "terragrunt";
         };
 
         # Terraform-specific settings
@@ -88,6 +88,7 @@
         # Language support
         redhat.vscode-yaml
         hashicorp.terraform
+        tsandall.opa # Open Policy Agent - Rego syntax highlighting, testing, and debugging
 
         # Git integration
         eamodio.gitlens

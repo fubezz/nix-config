@@ -12,6 +12,7 @@
     # Infrastructure as Code
     terraform
     terragrunt
+    hcl2json # Convert HCL to JSON for easier processing
 
     # Nix development tools
     nil # Nix language server
@@ -81,6 +82,8 @@
     pre-commit # Git pre-commit hooks
     go-task # Task runner / build tool alternative to Make
     uv # Universal command-line interface for running commands
+    open-policy-agent # Open Policy Agent for policy enforcement
+    conftest # Policy testing tool
 
     # Container tools
     dive # Docker image analysis
