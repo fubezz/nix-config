@@ -7,7 +7,6 @@ in
   # Import modular configurations
   imports = [
     ./modules/packages.nix
-    ./modules/shell.nix
     ./modules/macos.nix
     ./config # This imports all config modules via default.nix
   ];
@@ -20,9 +19,6 @@ in
 
     # Session variables
     sessionVariables = {
-      EDITOR = "code --wait";
-      VISUAL = "code --wait";
-      GIT_EDITOR = "code --wait";
       PAGER = "less -R";
       LESS = "-R";
     };

@@ -104,7 +104,7 @@ in
         diff = { external = "${pkgs.difftastic}/bin/difft"; };
         pull = { rebase = true; };
         push = { autoSetupRemote = true; };
-        core = { editor = "micro"; };
+        core = { editor = "vim"; };
 
         # Credential management for GitHub
         credential = {

@@ -82,7 +82,7 @@
     pre-commit # Git pre-commit hooks
     go-task # Task runner / build tool alternative to Make
     uv # Universal command-line interface for running commands
-    open-policy-agent # Open Policy Agent for policy enforcement
+    # open-policy-agent # Open Policy Agent for policy enforcement
     conftest # Policy testing tool
 
     # Container tools

@@ -5,5 +5,6 @@
   imports = [
     ./ghostty.nix
     ./vscode.nix
+    ./shell.nix
   ];
 }
