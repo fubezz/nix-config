@@ -84,6 +84,7 @@
     uv # Universal command-line interface for running commands
     # open-policy-agent # Open Policy Agent for policy enforcement
     conftest # Policy testing tool
+    mise # Tool for managing environments for development
 
     # Container tools
     dive # Docker image analysis
@@ -100,5 +101,8 @@
     # JSON/YAML tools
     fx # JSON viewer
     dasel # JSON/YAML/TOML/XML processor
+
+    # Ai
+    claude-code # Anthropic Claude CLI
   ];
 }

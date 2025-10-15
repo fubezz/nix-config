@@ -81,19 +81,19 @@
 
       };
 
-      extensions = with pkgs.vscode-marketplace; [
-        # Theme
-        dracula-theme.theme-dracula
+      # extensions = with pkgs.vscode-marketplace; [
+      #   # Theme
+      #   dracula-theme.theme-dracula
 
-        # Language support
-        redhat.vscode-yaml
-        hashicorp.terraform
-        tsandall.opa # Open Policy Agent - Rego syntax highlighting, testing, and debugging
+      #   # Language support
+      #   redhat.vscode-yaml
+      #   hashicorp.terraform
+      #   tsandall.opa # Open Policy Agent - Rego syntax highlighting, testing, and debugging
 
-        # Git integration
-        eamodio.gitlens
-        mhutchie.git-graph # Git repository graph visualization
-      ];
+      #   # Git integration
+      #   eamodio.gitlens
+      #   mhutchie.git-graph # Git repository graph visualization
+      # ];
     };
   };
 }

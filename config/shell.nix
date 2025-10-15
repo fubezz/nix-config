@@ -74,6 +74,8 @@ in
         FZF_DEFAULT_OPTS = "--height 40% --layout=reverse --border";
         TERM = "xterm-256color";
         K9S_FEATURE_GATE_NODE_SHELL = true;
+        # Aignostics OSS Policy - Forbidden Licenses for Homebrew
+        HOMEBREW_FORBIDDEN_LICENSES = "JRL AFPL AGPL-1.0 AGPL-1.0-only AGPL-1.0-or-later AGPL-3.0 AGPL-3.0-only AGPL-3.0-or-later GPL-1.0+ GPL-2.0+ GPL-3.0+ GPL-1.0-only GPL-2.0-only GPL-3.0-only GPL-1.0-or-later GPL-2.0-or-later GPL-3.0-or-later LGPL-2.0+ LGPL-2.1+ LGPL-3.0+ LGPL-2.0-only LGPL-2.1-only LGPL-3.0-only LGPL-2.0-or-later LGPL-2.1-or-later LGPL-3.0-or-later";
       };
 
       initContent = ''
