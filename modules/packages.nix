@@ -5,6 +5,7 @@
     # Essential kubernetes tools
     kubectl
     kubernetes-helm
+    kubectx
     k9s
     kind # Kubernetes in Docker - local clusters
     argocd # ArgoCD CLI

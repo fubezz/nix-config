@@ -86,7 +86,7 @@ in
 
       oh-my-zsh = {
         enable = true;
-        plugins = [ "git" "kubectl" "python" "uv" "direnv" ];
+        plugins = [ "git" "git-auto-fetch" "gcloud" "fzf" "kubectl" "kubectx" "python" "uv" "direnv" ];
         theme = "robbyrussell";
       };
     };
