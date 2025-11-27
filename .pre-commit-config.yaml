@@ -55,7 +55,7 @@ repos:
 
   # Secret leak detection
   - repo: https://github.com/zricethezav/gitleaks
-    rev: v8.29.0
+    rev: v8.30.0
     hooks:
       - id: gitleaks
         stages: [pre-commit]
