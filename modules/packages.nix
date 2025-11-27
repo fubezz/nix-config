@@ -12,6 +12,7 @@
 
     # Infrastructure as Code
     terraform
+    terraform-docs
     terragrunt
     hcl2json # Convert HCL to JSON for easier processing
 
