@@ -82,6 +82,8 @@ in
         source /etc/aignostics/main.sh
         # Enable direnv
         eval "$(direnv hook zsh)"
+        # Enable mise
+        eval "$(/opt/homebrew/bin/mise activate zsh)"
       '';
 
       oh-my-zsh = {

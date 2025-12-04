@@ -62,7 +62,8 @@ in
       "ghostty" # Modern terminal emulator
       "microsoft-teams" # Microsoft Teams
       "slack"
-      "stats"
+      "stats" # System monitoring app
+      "marta" # File manager
     ];
     onActivation = {
       cleanup = "zap";
