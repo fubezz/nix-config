@@ -83,7 +83,7 @@ in
         # Enable direnv
         eval "$(direnv hook zsh)"
         # Enable mise
-        eval "$(/opt/homebrew/bin/mise activate zsh)"
+        eval "$(${pkgs.mise}/bin/mise activate zsh)"
       '';
 
       oh-my-zsh = {
