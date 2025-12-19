@@ -79,21 +79,30 @@
           "editor.insertSpaces" = true;
         };
 
+        # Terragrunt-specific settings
+        "[terragrunt]" = {
+          "editor.defaultFormatter" = "ossamatammam.terragrunt-formatter";
+          "editor.formatOnSave" = true;
+          "editor.tabSize" = 2;
+          "editor.insertSpaces" = true;
+        };
+
       };
 
-      # extensions = with pkgs.vscode-marketplace; [
-      #   # Theme
-      #   dracula-theme.theme-dracula
+      extensions = with pkgs.vscode-marketplace; [
+        # Theme
+        dracula-theme.theme-dracula
 
-      #   # Language support
-      #   redhat.vscode-yaml
-      #   hashicorp.terraform
-      #   tsandall.opa # Open Policy Agent - Rego syntax highlighting, testing, and debugging
+        # Language support
+        redhat.vscode-yaml
+        # hashicorp.terraform # Temporarily disabled - nix package broken, install manually via VSCode
+        ossamatammam.terragrunt-formatter
+        tsandall.opa # Open Policy Agent - Rego syntax highlighting, testing, and debugging
 
-      #   # Git integration
-      #   eamodio.gitlens
-      #   mhutchie.git-graph # Git repository graph visualization
-      # ];
+        # Git integration
+        eamodio.gitlens
+        mhutchie.git-graph # Git repository graph visualization
+      ];
     };
   };
 }

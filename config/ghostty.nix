@@ -12,6 +12,9 @@
     cursor-style = block
     cursor-style-blink = false
 
+    # Keybindings
+    keybind = shift+enter=text:\n
+
     # Speed up scrolling
     mouse-scroll-multiplier = 3
 
