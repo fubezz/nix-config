@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager = {
@@ -29,6 +30,7 @@
   outputs =
     { nix-darwin
     , nixpkgs
+    , nixpkgs-unstable
     , home-manager
     , nix-homebrew
     , mac-app-util
@@ -45,8 +47,20 @@
         home = userConfig.system.homeDirectory;
         homeManager.stateVersion = "25.05";
       };
+      pkgs-unstable = import nixpkgs-unstable {
+        inherit (machineConfig) system;
+        config = {
+          allowUnfree = true;
+        };
+      };
       pkgs = import nixpkgs {
-        overlays = [ nix-vscode-extensions.overlays.default ];
+        overlays = [
+          nix-vscode-extensions.overlays.default
+          (final: prev: {
+            git-credential-manager = pkgs-unstable.git-credential-manager;
+            pre-commit = pkgs-unstable.pre-commit;
+          })
+        ];
         inherit (machineConfig) system;
         config = {
           allowUnfree = true;
