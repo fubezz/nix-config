@@ -30,7 +30,7 @@
         "files.trimFinalNewlines" = true;
         "workbench.editor.enablePreview" = false;
         "explorer.confirmDelete" = false;
-        "git.autofetch" = true;
+        "git.autofetch" = false;
         "git.confirmSync" = false;
         "terminal.integrated.fontSize" = 12;
         "terminal.integrated.fontFamily" = "MesloLGS NF";
@@ -102,6 +102,9 @@
         # Git integration
         eamodio.gitlens
         mhutchie.git-graph # Git repository graph visualization
+
+        # Kubernetes
+        tim-koehler.helm-intellisense
       ];
     };
   };
