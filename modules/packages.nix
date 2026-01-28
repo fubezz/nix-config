@@ -40,7 +40,7 @@
     oh-my-zsh
     fzf
     fd
-    pre-commit # Git hooks framework
+    # pre-commit - moved to homebrew due to dotnet dependency issues
 
     # Enhanced CLI tools
     ripgrep # Fast grep alternative
@@ -81,12 +81,12 @@
     # Development utilities
     shellcheck # Shell script linting
     yamllint # YAML linting
-    pre-commit # Git pre-commit hooks
+    # pre-commit - moved to homebrew due to dotnet dependency issues
     go-task # Task runner / build tool alternative to Make
     uv # Universal command-line interface for running commands
     # open-policy-agent # Open Policy Agent for policy enforcement
     conftest # Policy testing tool
-    mise # Tool for managing environments for development
+    # mise - moved to homebrew for newer version
 
     # Container tools
     dive # Docker image analysis
@@ -97,7 +97,7 @@
     git-lfs # Git Large File Storage
     git-crypt # Git encryption
     tig # Text-mode interface for git
-    git-credential-manager # Git credential management
+    # git-credential-manager # Disabled - uses dotnet which is broken, using osxkeychain instead
     gnupg # GPG for commit signing
 
     # JSON/YAML tools

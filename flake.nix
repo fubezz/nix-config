@@ -47,24 +47,19 @@
         home = userConfig.system.homeDirectory;
         homeManager.stateVersion = "25.05";
       };
-      pkgs-unstable = import nixpkgs-unstable {
-        inherit (machineConfig) system;
-        config = {
-          allowUnfree = true;
-        };
-      };
+
+      # Main package set based on stable 25.11
       pkgs = import nixpkgs {
+        # Overlays modify/extend the package set in order
+        # Signature: final (after all overlays) -> prev (before this overlay) -> attrs to merge
         overlays = [
+          # Add VS Code marketplace extensions to pkgs
           nix-vscode-extensions.overlays.default
-          (final: prev: {
-            git-credential-manager = pkgs-unstable.git-credential-manager;
-            pre-commit = pkgs-unstable.pre-commit;
-          })
         ];
         inherit (machineConfig) system;
         config = {
           allowUnfree = true;
-          allowUnfreePredicate = _: true;
+          allowUnfreePredicate = _: true; # Allow all unfree packages
           #allowBroken = true;
           allowInsecure = false;
         };

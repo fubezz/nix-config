@@ -82,8 +82,8 @@ in
         source /etc/aignostics/main.sh
         # Enable direnv
         eval "$(direnv hook zsh)"
-        # Enable mise
-        eval "$(${pkgs.mise}/bin/mise activate zsh)"
+        # Enable mise (installed via homebrew)
+        eval "$(mise activate zsh)"
       '';
 
       oh-my-zsh = {
@@ -110,11 +110,9 @@ in
         push = { autoSetupRemote = true; };
         core = { editor = "vim"; };
 
-        # Credential management for GitHub
+        # Credential management for GitHub (use macOS Keychain)
         credential = {
-          "https://github.com" = {
-            helper = "${pkgs.git-credential-manager}/bin/git-credential-manager";
-          };
+          helper = "osxkeychain";
         };
 
         # GPG commit signing

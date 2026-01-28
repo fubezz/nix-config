@@ -4,7 +4,6 @@ let
   userConfig = import ./user.nix;
 in
 {
-
   system.primaryUser = userConfig.user.name;
   users.users.${userConfig.user.name} = {
     inherit (userConfig.user) name;
@@ -14,7 +13,6 @@ in
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     # Essential system tools
-    gitAndTools.gitFull
     nmap
     rectangle
 
@@ -48,12 +46,6 @@ in
   # $ darwin-rebuild changelog
   system.stateVersion = 6;
 
-  # The platform the configuration will be used on.
-  nixpkgs.hostPlatform = userConfig.system.platform;
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
-
   # Homebrew configuration
   homebrew = {
     enable = true;
@@ -64,6 +56,11 @@ in
       "slack"
       "stats" # System monitoring app
       "marta" # File manager
+      # "git-credential-manager" # Git credential management
+    ];
+    brews = [
+      "pre-commit" # Git hooks framework - moved from nix due to dotnet issues
+      "mise" # Tool for managing environments - moved from nix for newer version
     ];
     onActivation = {
       cleanup = "zap";
