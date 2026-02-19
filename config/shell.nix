@@ -8,6 +8,10 @@ in
     zsh = {
       enable = true;
       shellAliases = {
+        # Nix aliases
+        nixupdate = "nix flake update /Users/fabian/git/nix-config";
+        nixrebuild = "sudo darwin-rebuild switch --flake path:/Users/fabian/git/nix-config#MacBook-Pro";
+
         # Enhanced ls aliases using eza
         ll = "eza -l --git";
         la = "eza -la --git";
@@ -117,10 +121,10 @@ in
 
         # GPG commit signing
         commit = {
-          gpgsign = false;
+          gpgsign = true;
         };
         tag = {
-          gpgsign = false;
+          gpgsign = true;
         };
         gpg = {
           format = "openpgp";
