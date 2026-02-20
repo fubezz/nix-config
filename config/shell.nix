@@ -9,7 +9,7 @@ in
       enable = true;
       shellAliases = {
         # Nix aliases
-        nixupdate = "nix flake update /Users/fabian/git/nix-config";
+        nixupdate = "nix flake update --flake path:/Users/fabian/git/nix-config";
         nixrebuild = "sudo darwin-rebuild switch --flake path:/Users/fabian/git/nix-config#MacBook-Pro";
 
         # Enhanced ls aliases using eza
