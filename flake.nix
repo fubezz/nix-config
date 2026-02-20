@@ -64,6 +64,15 @@
           allowInsecure = false;
         };
       };
+
+      # Unstable package set for bleeding-edge packages
+      pkgs-unstable = import nixpkgs-unstable {
+        inherit (machineConfig) system;
+        config = {
+          allowUnfree = true;
+          allowUnfreePredicate = _: true;
+        };
+      };
     in
     {
       # Build darwin flake using:
@@ -82,6 +91,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
+              extraSpecialArgs = { inherit pkgs-unstable; };
               users.${userConfig.user.name} = import ./home.nix;
               # To enable spotlight for all users:
               sharedModules = [

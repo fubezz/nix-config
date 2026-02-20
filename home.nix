@@ -1,4 +1,4 @@
-_:
+{ pkgs-unstable, ... }:
 
 let
   userConfig = import ./user.nix;

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
   home.packages = with pkgs; [
@@ -105,6 +105,6 @@
     dasel # JSON/YAML/TOML/XML processor
 
     # Ai
-    claude-code # Anthropic Claude CLI
+    pkgs-unstable.claude-code # Anthropic Claude CLI (from unstable)
   ];
 }
