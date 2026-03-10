@@ -94,16 +94,26 @@
         dracula-theme.theme-dracula
 
         # Language support
+        jnoortheen.nix-ide
         redhat.vscode-yaml
+        bahramjoharshamshiri.hcl-lsp
         # hashicorp.terraform # Temporarily disabled - nix package broken, install manually via VSCode
+        # github.copilot-chat # Proprietary - install manually via VSCode
+        # anthropic.claude-code # Proprietary - install manually via VSCode
         ossamatammam.terragrunt-formatter
         tsandall.opa # Open Policy Agent - Rego syntax highlighting, testing, and debugging
+
+        # Data
+        mechatroner.rainbow-csv
 
         # Git integration
         eamodio.gitlens
         mhutchie.git-graph # Git repository graph visualization
+        github.vscode-github-actions
 
-        # Kubernetes
+        # Kubernetes / Helm
+        ms-kubernetes-tools.vscode-kubernetes-tools
+        technosophos.vscode-helm
         tim-koehler.helm-intellisense
       ];
     };
