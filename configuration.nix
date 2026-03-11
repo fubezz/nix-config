@@ -58,9 +58,13 @@ in
       "marta" # File manager
       # "git-credential-manager" # Git credential management
     ];
+    taps = [
+      "atlassian/homebrew-acli"
+    ];
     brews = [
       "pre-commit" # Git hooks framework - moved from nix due to dotnet issues
       "mise" # Tool for managing environments - moved from nix for newer version
+      "atlassian/homebrew-acli/acli" # Atlassian CLI v2
     ];
     onActivation = {
       cleanup = "zap";
