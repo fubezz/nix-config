@@ -91,7 +91,7 @@
     # Container tools
     dive # Docker image analysis
     docker # docker runtime
-    colima # docker desktop for terminal
+    pkgs-unstable.colima # docker desktop for terminal (stable lima is EOL in 25.11)
 
     # Git tools
     git-lfs # Git Large File Storage

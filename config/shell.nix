@@ -104,9 +104,11 @@ in
 
     git = {
       enable = true;
-      userName = userConfig.user.fullName;
-      userEmail = userConfig.user.email;
-      extraConfig = {
+      settings = {
+        user = {
+          name = userConfig.user.fullName;
+          email = userConfig.user.email;
+        };
         github.user = userConfig.git.githubUsername;
         init = { inherit (userConfig.git) defaultBranch; };
         diff = { external = "${pkgs.difftastic}/bin/difft"; };
