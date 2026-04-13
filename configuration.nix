@@ -4,6 +4,9 @@ let
   userConfig = import ./user.nix;
 in
 {
+  imports = [
+    ./config/homebrew.nix
+  ];
   system.primaryUser = userConfig.user.name;
   users.users.${userConfig.user.name} = {
     inherit (userConfig.user) name;
@@ -45,32 +48,4 @@ in
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 6;
-
-  # Homebrew configuration
-  homebrew = {
-    enable = true;
-    casks = [
-      "container" # Apple's container tool for creating and running Linux containers
-      "ghostty" # Modern terminal emulator
-      "microsoft-teams" # Microsoft Teams
-      "slack"
-      "stats" # System monitoring app
-      "marta" # File manager
-      # "git-credential-manager" # Git credential management
-    ];
-    taps = [
-      "atlassian/homebrew-acli"
-    ];
-    brews = [
-      "pre-commit" # Git hooks framework - moved from nix due to dotnet issues
-      "mise" # Tool for managing environments - moved from nix for newer version
-      "atlassian/homebrew-acli/acli" # Atlassian CLI v2
-      "pinentry-mac" # GPG pinentry for macOS
-    ];
-    onActivation = {
-      cleanup = "zap";
-      autoUpdate = true;
-      upgrade = true;
-    };
-  };
 }

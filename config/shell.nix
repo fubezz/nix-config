@@ -1,8 +1,5 @@
 { pkgs, ... }:
 
-let
-  userConfig = import ../user.nix;
-in
 {
   programs = {
     zsh = {
@@ -102,36 +99,5 @@ in
       enableZshIntegration = true;
     };
 
-    git = {
-      enable = true;
-      settings = {
-        user = {
-          name = userConfig.user.fullName;
-          email = userConfig.user.email;
-        };
-        github.user = userConfig.git.githubUsername;
-        init = { inherit (userConfig.git) defaultBranch; };
-        diff = { external = "${pkgs.difftastic}/bin/difft"; };
-        pull = { rebase = true; };
-        push = { autoSetupRemote = true; };
-        core = { editor = "vim"; };
-
-        # Credential management for GitHub (use macOS Keychain)
-        credential = {
-          helper = "osxkeychain";
-        };
-
-        # GPG commit signing
-        commit = {
-          gpgsign = true;
-        };
-        tag = {
-          gpgsign = true;
-        };
-        gpg = {
-          format = "openpgp";
-        };
-      };
-    };
   };
 }

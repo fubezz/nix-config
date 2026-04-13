@@ -19,5 +19,6 @@
   git = {
      defaultBranch = "main"; # or "develop", "master", etc.
      githubUsername = "your-github-username";
+     signingKey = "YOUR_GPG_KEY_ID"; # GPG key ID for commit signing
   };
 }

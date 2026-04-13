@@ -6,5 +6,7 @@
     ./ghostty.nix
     ./vscode.nix
     ./shell.nix
+    ./git.nix
+    ./gpg.nix
   ];
 }

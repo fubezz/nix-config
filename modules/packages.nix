@@ -27,6 +27,7 @@
     (google-cloud-sdk.withExtraComponents [
       google-cloud-sdk.components.gke-gcloud-auth-plugin
     ])
+    awscli2 # AWS CLI v2
 
     # Python environment
     (pkgs.python3.withPackages (python-pkgs: [
@@ -53,7 +54,7 @@
     diff-so-fancy # Better git diff
     gh # GitHub CLI
     lazygit # Terminal UI for git
-    direnv # Per-directory environment variables
+    # direnv - moved to homebrew due to fish test sandbox kill on macOS
     go-task # For task management
 
     # Pre-commit and code quality tools
