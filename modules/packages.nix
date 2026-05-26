@@ -37,6 +37,9 @@
     # Go programming language
     go
 
+    # Node.js (includes npm and npx)
+    nodejs
+
     # Shell and terminal tools
     oh-my-zsh
     fzf
@@ -75,6 +78,7 @@
     # Network and system tools
     nmap # Network scanner
     netcat # Network utility
+    pwgen # Password generator
     watch # Command monitoring
     lsof # List open files
     ps # Process status
