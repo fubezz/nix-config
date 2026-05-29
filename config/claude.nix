@@ -4,6 +4,13 @@
   home.file.".claude/CLAUDE.md".text = ''
     # Global Coding & Infrastructure Best Practices
 
+    ## Skills & Marketplace
+
+    - The company shares Claude Code skills via the private marketplace at https://github.com/aignostics/claude-marketplace.
+    - When looking for skills or building new ones, check the marketplace first.
+
+    ---
+
     ## Tooling
 
     - The team uses **mise** for managing tool versions across repositories.
