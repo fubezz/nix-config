@@ -8,5 +8,6 @@
     ./shell.nix
     ./git.nix
     ./gpg.nix
+    ./claude.nix
   ];
 }
