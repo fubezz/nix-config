@@ -103,6 +103,13 @@
 
     ---
 
+    ## Observability
+
+    - The observability stack is managed in the **gitops repository** and consists of **Prometheus**, **Thanos**, **OpenTelemetry**, and **Grafana**.
+    - Grafana dashboards can be provisioned via a Helm chart.
+
+    ---
+
     ## Terraform-Modules Repository
 
     - Contains all custom Terraform modules. Any module that cannot be sourced from an official provider must be written here, not inline in the infrastructure repo.
