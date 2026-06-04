@@ -15,10 +15,10 @@
 
     - The team uses **mise** for managing tool versions across repositories.
     - Fabian personally uses **Nix** — missing tools are installed globally via the `nix-config` repository.
-    - After every commit to the nix-config repository, always run:
-      ```bash
-      sudo darwin-rebuild switch --flake "path:/Users/fabian/git/nix-config#MacBook-Pro"
-      ```
+    - Two aliases are configured for managing the nix setup (defined in `config/shell.nix`):
+      - `nixupdate` — updates the flake inputs
+      - `nixrebuild` — rebuilds and switches to the new system configuration
+    - After every commit to the nix-config repository, always run `nixrebuild`.
 
     ---
 
