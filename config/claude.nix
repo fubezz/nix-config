@@ -15,6 +15,7 @@
 
     - The team uses **mise** for managing tool versions across repositories.
     - Fabian personally uses **Nix** — missing tools are installed globally via the `nix-config` repository.
+    - `~/.claude/CLAUDE.md` is managed by Nix home-manager — **never edit it directly**. Always edit `config/claude.nix` in the nix-config repository, then commit and run `nixrebuild`.
     - Two aliases are configured for managing the nix setup (defined in `config/shell.nix`):
       - `nixupdate` — updates the flake inputs
       - `nixrebuild` — rebuilds and switches to the new system configuration
