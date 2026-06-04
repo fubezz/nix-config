@@ -95,7 +95,7 @@
 
     # Container tools
     dive # Docker image analysis
-    docker # docker runtime
+    docker_29 # docker runtime (docker_28 marked insecure)
     pkgs-unstable.colima # docker desktop for terminal (stable lima is EOL in 25.11)
 
     # Git tools
@@ -111,5 +111,26 @@
 
     # Ai
     pkgs-unstable.claude-code # Anthropic Claude CLI (from unstable)
+
+    # OpenSpec CLI - spec-driven development tool (openspec.dev / github.com/Fission-AI/OpenSpec)
+    # Installs the `openspec` binary; run `openspec init` in a repo, `openspec update` to sync skills
+    (pkgs.buildNpmPackage rec {
+      pname = "openspec";
+      version = "1.4.1";
+      src = pkgs.fetchFromGitHub {
+        owner = "Fission-AI";
+        repo = "OpenSpec";
+        rev = "v${version}";
+        hash = "sha256-VZZ/ukjciXqiebwei2JizyOnxx0T3IeoowFWElKec4o=";
+      };
+      nativeBuildInputs = [ pkgs.pnpm ];
+      npmDepsHash = "sha256-vGD8rZgqcgIKOAQTuZVHh6C+QTrxkyw9CgdJ4NOwSp8=";
+      meta = {
+        description = "AI-native system for spec-driven development";
+        homepage = "https://github.com/Fission-AI/OpenSpec";
+        license = pkgs.lib.licenses.mit;
+        mainProgram = "openspec";
+      };
+    })
   ];
 }
