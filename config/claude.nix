@@ -8,6 +8,7 @@
 
     - The company shares Claude Code skills via the private marketplace at https://github.com/aignostics/claude-marketplace.
     - When looking for skills or building new ones, check the marketplace first.
+    - After creating any Jira ticket, always run the `/review-ticket-human` skill to improve it before moving on.
 
     ---
 
