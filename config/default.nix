@@ -9,5 +9,6 @@
     ./git.nix
     ./gpg.nix
     ./claude.nix
+    ./skills.nix
   ];
 }
