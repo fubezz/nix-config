@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, pkgs-unstable, pkgs-2411, ... }:
 
 {
   home.packages = with pkgs; [
@@ -8,7 +8,7 @@
     kubectx
     k9s
     kind # Kubernetes in Docker - local clusters
-    argocd # ArgoCD CLI
+    pkgs-2411.argocd # ArgoCD CLI — pinned to 2.12.x to match server version
 
     # Infrastructure as Code
     terraform

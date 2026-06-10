@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-2411.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin"; # pinned for argocd 2.12.x
     nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager = {
@@ -31,6 +32,7 @@
     { nix-darwin
     , nixpkgs
     , nixpkgs-unstable
+    , nixpkgs-2411
     , home-manager
     , nix-homebrew
     , mac-app-util
@@ -73,6 +75,15 @@
           allowUnfreePredicate = _: true;
         };
       };
+
+      # nixpkgs-24.11 pinned for specific package versions (e.g. argocd 2.12.x)
+      pkgs-2411 = import nixpkgs-2411 {
+        inherit (machineConfig) system;
+        config = {
+          allowUnfree = true;
+          allowUnfreePredicate = _: true;
+        };
+      };
     in
     {
       # Build darwin flake using:
@@ -91,7 +102,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              extraSpecialArgs = { inherit pkgs-unstable; };
+              extraSpecialArgs = { inherit pkgs-unstable pkgs-2411; };
               users.${userConfig.user.name} = import ./home.nix;
               # To enable spotlight for all users:
               sharedModules = [
