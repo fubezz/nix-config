@@ -76,14 +76,7 @@
         };
       };
 
-      # nixpkgs-24.11 pinned for specific package versions (e.g. argocd 2.12.x)
-      pkgs-2411 = import nixpkgs-2411 {
-        inherit (machineConfig) system;
-        config = {
-          allowUnfree = true;
-          allowUnfreePredicate = _: true;
-        };
-      };
+
     in
     {
       # Build darwin flake using:
@@ -102,7 +95,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              extraSpecialArgs = { inherit pkgs-unstable pkgs-2411; };
+              extraSpecialArgs = { inherit pkgs-unstable; };
               users.${userConfig.user.name} = import ./home.nix;
               # To enable spotlight for all users:
               sharedModules = [
