@@ -12,5 +12,6 @@
     ".claude/skills/review-infrastructure-pull-request".source = ../skills/review-infrastructure-pull-request;
     ".claude/skills/review-ticket-human".source = ../skills/review-ticket-human;
     ".claude/skills/slack-to-jira".source = ../skills/slack-to-jira;
+    ".claude/skills/monthly-rec-meeting-record".source = ../skills/monthly-rec-meeting-record;
   };
 }
