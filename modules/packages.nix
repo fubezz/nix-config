@@ -112,6 +112,28 @@
     # Ai
     pkgs-unstable.claude-code # Anthropic Claude CLI (from unstable)
 
+    # OX Security CLI (oxappsec.com)
+    (pkgs.stdenv.mkDerivation rec {
+      pname = "ox-cli";
+      version = "0.53.2";
+      src = pkgs.fetchurl {
+        url = "https://registry.npmjs.org/@oxappsec/ox-cli/-/ox-cli-${version}.tgz";
+        hash = "sha256-mwC99DQKcCQvojqY4SSM3U2Ow8ZK4Nii+R/BeRsGXTA=";
+      };
+      nativeBuildInputs = [ pkgs.makeWrapper ];
+      dontBuild = true;
+      installPhase = ''
+        mkdir -p $out/lib/ox-cli $out/bin
+        cp -r . $out/lib/ox-cli/
+        makeWrapper ${pkgs.nodejs}/bin/node $out/bin/ox-cli \
+          --add-flags "$out/lib/ox-cli/bundle.js"
+      '';
+      meta = {
+        description = "CLI tool for OX Security";
+        mainProgram = "ox-cli";
+      };
+    })
+
     # OpenSpec CLI - spec-driven development tool (openspec.dev / github.com/Fission-AI/OpenSpec)
     # Installs the `openspec` binary; run `openspec init` in a repo, `openspec update` to sync skills
     (pkgs.buildNpmPackage rec {
