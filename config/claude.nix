@@ -116,6 +116,16 @@
 
     ---
 
+    ## Sandbox
+
+    - **"Sandbox"** refers to the GKE cluster `gke_aignx-sandbox-owwexnqmwn_europe-west1_sandbox` and its GitOps repo at `/Users/fabian/git/sandbox-gitops` (`https://github.com/aignostics/sandbox-gitops`).
+    - Sandbox PRs can be merged without an approval — merge directly after creating.
+    - ArgoCD for the sandbox cluster is configured in the **normal gitops repository** (not sandbox-gitops).
+    - The sandbox ArgoCD app-of-apps reads from `app-manifests/` in sandbox-gitops, tracking `HEAD` (main branch).
+    - Active OTel overlay: `open-telemetry-collector/overlays/sandbox` (kustomize, logs + events only). The Helm-based overlay is at `open-telemetry-collector/overlays/sandbox-helm` and deployed via the `open-telemetry-collector-charts` ApplicationSet.
+
+    ---
+
     ## Terraform-Modules Repository
 
     - Contains all custom Terraform modules. Any module that cannot be sourced from an official provider must be written here, not inline in the infrastructure repo.
