@@ -28,6 +28,7 @@
       google-cloud-sdk.components.gke-gcloud-auth-plugin
     ])
     awscli2 # AWS CLI v2
+    grafana # Includes grafana-cli
 
     # Python environment
     (pkgs.python3.withPackages (python-pkgs: [
