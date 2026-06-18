@@ -29,6 +29,7 @@
     ])
     awscli2 # AWS CLI v2
     grafana # Includes grafana-cli
+    grafana-loki # Includes logcli for querying Loki
 
     # Python environment
     (pkgs.python3.withPackages (python-pkgs: [
