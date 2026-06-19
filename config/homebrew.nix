@@ -22,6 +22,7 @@
       "atlassian/homebrew-acli/acli" # Atlassian CLI v2
       "pinentry-mac" # GPG pinentry for macOS
       "direnv" # Per-directory env vars - moved from nix due to fish test sandbox kill on macOS
+      "rtk" # RTK CLI
     ];
     onActivation = {
       cleanup = "zap";
