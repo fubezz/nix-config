@@ -1,6 +1,56 @@
 { ... }:
 
 {
+  home.file.".claude/settings.json".text = builtins.toJSON {
+    model = "sonnet[1m]";
+    permissions = {
+      ask = [
+        "Bash(gh api *-X POST*)"
+        "Bash(gh api *-X PATCH*)"
+        "Bash(gh api *-X DELETE*)"
+        "Bash(gh api *-X PUT*)"
+        "Bash(gh api *--method POST*)"
+        "Bash(gh api *--method PATCH*)"
+        "Bash(gh api *--method DELETE*)"
+        "Bash(gh api *--method PUT*)"
+        "Bash(curl *-X POST*)"
+        "Bash(curl *-X PUT*)"
+        "Bash(curl *-X DELETE*)"
+        "Bash(curl *-X PATCH*)"
+        "Bash(curl *--request POST*)"
+        "Bash(curl *--request PUT*)"
+        "Bash(curl *--request DELETE*)"
+        "Bash(curl *--request PATCH*)"
+        "Bash(curl *--request=POST*)"
+        "Bash(curl *--request=PUT*)"
+        "Bash(curl *--request=DELETE*)"
+        "Bash(curl *--request=PATCH*)"
+        "Bash(curl *-d *)"
+        "Bash(curl *--data *)"
+        "Bash(curl *--data-binary *)"
+        "Bash(curl *--data-raw *)"
+        "Bash(curl *--data-urlencode *)"
+        "Bash(curl *--upload-file *)"
+        "Bash(curl *-T *)"
+        "Bash(curl *-F *)"
+        "Bash(curl *--form *)"
+      ];
+    };
+    hooks = {
+      PreToolUse = [
+        {
+          matcher = "Bash";
+          hooks = [
+            {
+              type = "command";
+              command = "rtk hook claude";
+            }
+          ];
+        }
+      ];
+    };
+  };
+
   home.file.".claude/CLAUDE.md".text = ''
     # Global Coding & Infrastructure Best Practices
 
