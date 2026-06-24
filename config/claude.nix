@@ -4,7 +4,15 @@
   home.file.".claude/settings.json".text = builtins.toJSON {
     model = "sonnet[1m]";
     permissions = {
+      allow = [
+        "Bash(kubectl get*)"
+        "Bash(gcloud* list*)"
+        "Bash(gcloud* describe*)"
+        "Bash(gcloud* get*)"
+      ];
       ask = [
+        "Bash(kubectl*)"
+        "Bash(gcloud*)"
         "Bash(gh api *-X POST*)"
         "Bash(gh api *-X PATCH*)"
         "Bash(gh api *-X DELETE*)"
