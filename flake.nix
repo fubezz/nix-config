@@ -95,6 +95,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
+              backupFileExtension = "backup";
               extraSpecialArgs = { inherit pkgs-unstable; };
               users.${userConfig.user.name} = import ./home.nix;
               # To enable spotlight for all users:
