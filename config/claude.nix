@@ -3,12 +3,24 @@
 {
   home.file.".claude/settings.json".text = builtins.toJSON {
     model = "sonnet[1m]";
+    skipWorkflowUsageWarning = true;
     permissions = {
       allow = [
-        "Bash(kubectl get*)"
         "Bash(gcloud* list*)"
         "Bash(gcloud* describe*)"
         "Bash(gcloud* get*)"
+        "Bash(kubectl get *)"
+        "Bash(kubectl describe *)"
+        "Bash(kubectl logs *)"
+        "Bash(kubectl top *)"
+        "Bash(kubectl config view*)"
+        "Bash(kubectl config get*)"
+        "Bash(kubectl cluster-info)"
+        "Bash(kubectl api-resources*)"
+        "Bash(kubectl explain *)"
+        "Bash(kubectl version*)"
+        "Bash(kubectl * --context gke_aignx-sandbox-owwexnqmwn_europe-west1_sandbox*)"
+        "Bash(kubectl --context gke_aignx-sandbox-owwexnqmwn_europe-west1_sandbox* *)"
       ];
       ask = [
         "Bash(kubectl*)"
@@ -42,6 +54,23 @@
         "Bash(curl *-T *)"
         "Bash(curl *-F *)"
         "Bash(curl *--form *)"
+        "Bash(kubectl apply *)"
+        "Bash(kubectl delete *)"
+        "Bash(kubectl patch *)"
+        "Bash(kubectl edit *)"
+        "Bash(kubectl exec *)"
+        "Bash(kubectl scale *)"
+        "Bash(kubectl rollout *)"
+        "Bash(kubectl label *)"
+        "Bash(kubectl annotate *)"
+        "Bash(kubectl taint *)"
+        "Bash(kubectl drain *)"
+        "Bash(kubectl cordon *)"
+        "Bash(kubectl uncordon *)"
+        "Bash(kubectl create *)"
+        "Bash(kubectl replace *)"
+        "Bash(kubectl port-forward *)"
+        "Bash(kubectl cp *)"
       ];
     };
     hooks = {
