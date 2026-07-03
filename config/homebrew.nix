@@ -23,6 +23,7 @@
       "pinentry-mac" # GPG pinentry for macOS
       "direnv" # Per-directory env vars - moved from nix due to fish test sandbox kill on macOS
       "rtk" # RTK CLI
+      "codeburn" # See where your AI coding tokens go - by task, tool, model, and project
     ];
     onActivation = {
       cleanup = "zap";
