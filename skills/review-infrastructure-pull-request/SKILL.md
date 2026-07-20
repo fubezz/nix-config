@@ -1,6 +1,6 @@
 ---
 name: review-infra-pr
-skill_dir: /Users/fabian/.claude/skills/review-infra-pr
+skill_dir: /Users/fabian/.claude/skills/review-infrastructure-pull-request
 description: >
   Reviews infrastructure pull requests by inspecting changed IaC files and parsing Atlantis
   bot comments (plan output and policy checks). Alerts on resource replacements, destructions,
@@ -45,7 +45,7 @@ and parse the owner/repo from the remote URL. If that also fails, ask the user f
 Run this **single command** (one approval instead of many):
 
 ```bash
-SKILL_DIR=/Users/fabian/.claude/skills/review-infra-pr
+SKILL_DIR=/Users/fabian/.claude/skills/review-infrastructure-pull-request
 "$SKILL_DIR/scripts/fetch_and_analyze.sh" <OWNER> <REPO> <NUMBER> "$SKILL_DIR" > /tmp/pr_data.json
 ```
 
@@ -252,7 +252,7 @@ Fetches PR metadata, diff, files, and Atlantis plan/policy data **in parallel** 
 single JSON object. Requires: `gh` (authenticated), `python3` (stdlib).
 
 ```bash
-SKILL_DIR=/Users/fabian/.claude/skills/review-infra-pr
+SKILL_DIR=/Users/fabian/.claude/skills/review-infrastructure-pull-request
 PR_DATA=$("$SKILL_DIR/scripts/fetch_and_analyze.sh" <OWNER> <REPO> <PR_NUMBER> "$SKILL_DIR")
 ```
 
@@ -265,7 +265,7 @@ Can also be invoked standalone for debugging:
 ```bash
 gh api repos/<OWNER>/<REPO>/issues/<NUMBER>/comments --paginate \
   --jq '.[] | select(.user.login | test("atlantis|github-actions"; "i")) | {id:.id,body:.body,created_at:.created_at}' \
-  | python3 /Users/fabian/.claude/skills/review-infra-pr/scripts/parse_atlantis.py --mode all
+  | python3 /Users/fabian/.claude/skills/review-infrastructure-pull-request/scripts/parse_atlantis.py --mode all
 ```
 
 ## Error handling
