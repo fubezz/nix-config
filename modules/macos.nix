@@ -1,4 +1,4 @@
-_:
+{ lib, ... }:
 
 {
   # Configure macOS defaults for optimal development experience
@@ -16,18 +16,14 @@ _:
       ApplePressAndHoldEnabled = false;
     };
 
-    dock = {
-      # Auto-hide the dock
-      autohide = true;
-      # Remove the auto-hiding delay
-      autohide-delay = 0.0;
-      # Remove the animation when hiding/showing the Dock
-      autohide-time-modifier = 0.0;
-      # Show only open applications in the Dock
-      static-only = true;
-    };
+    # "com.apple.dock" = {
+    #   # Keep the dock always visible
+    #   autohide = false;
+    #   # Show only open applications in the Dock
+    #   static-only = false;
+    # };
 
-    finder = {
+    "com.apple.finder" = {
       # Show all filename extensions
       AppleShowAllExtensions = true;
       # Show path bar
@@ -36,4 +32,10 @@ _:
       ShowStatusBar = true;
     };
   };
+
+  # `defaults import` (run by setDarwinDefaults) only writes the plist — it doesn't
+  # tell the running Dock/Finder to reload it, so restart them to pick up changes.
+  home.activation.restartDockAndFinder = lib.hm.dag.entryAfter [ "setDarwinDefaults" ] ''
+    run /usr/bin/killall Dock Finder 2>/dev/null || true
+  '';
 }

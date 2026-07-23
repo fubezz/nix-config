@@ -8,6 +8,7 @@
         # Nix aliases
         nixupdate = "nix flake update --flake path:/Users/fabian/git/nix-config";
         nixrebuild = "sudo darwin-rebuild switch --flake path:/Users/fabian/git/nix-config#MacBook-Pro";
+        nixcode = "code /Users/fabian/git/nix-config";
 
         # Enhanced ls aliases using eza
         ll = "eza -l --git";
@@ -89,7 +90,17 @@
 
       oh-my-zsh = {
         enable = true;
-        plugins = [ "git" "git-auto-fetch" "gcloud" "fzf" "kubectl" "kubectx" "python" "uv" "direnv" ];
+        plugins = [
+          "git"
+          "git-auto-fetch"
+          "gcloud"
+          "fzf"
+          "kubectl"
+          "kubectx"
+          "python"
+          "uv"
+          "direnv"
+        ];
         theme = "robbyrussell";
       };
     };
