@@ -18,7 +18,7 @@
 
     # Nix development tools
     nil # Nix language server
-    nixfmt-rfc-style # Nix formatter
+    nixfmt # Nix formatter (RFC style is now the default upstream)
     nixpkgs-fmt # Alternative Nix formatter for pre-commit
     deadnix # Dead code elimination for Nix
     statix # Nix linter
