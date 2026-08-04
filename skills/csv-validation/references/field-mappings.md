@@ -1,5 +1,9 @@
 # CSV Validation — Jira Field Mappings & SOP Reference
 
+Tables 4/5/6 and the criticality guide below are condensed from TI-SOP-01. The SOP is
+authoritative; when they disagree, the SOP wins:
+<https://aignx.atlassian.net/wiki/spaces/QMS/pages/1993441350/TI-SOP-01+Computerized+System+Validation>
+
 ## ADF Wrapper Template
 
 All textarea fields require Atlassian Document Format (ADF). Use `contentFormat: "adf"` in
@@ -38,6 +42,13 @@ Bullet list: same as orderedList but type is `"bulletList"`.
 
 ## Jira Field Reference (QM project, CSV issue type 10029)
 
+**These IDs are for the `CSV` issue type (10029) only.** ML tools use the separate `CSV ML` issue
+type, which classifies by *Level of customization* rather than *SW Category*. Discover its fields
+with `getJiraIssueTypeMetaWithFields` before writing — do not reuse the IDs below on a `CSV ML`
+ticket, and never guess a field or option ID.
+
+QM site cloudId: `fff788d2-8a2a-4c36-a884-dde2bb4a2b49`
+
 | Field Name | Field Key | Type | Notes |
 |---|---|---|---|
 | Tool description | `customfield_10065` | textarea (ADF) | General description of the tool |
@@ -58,7 +69,17 @@ Bullet list: same as orderedList but type is `"bulletList"`.
 | Approver | `customfield_10220` | userpicker | `{"accountId": "..."}` |
 | Monitoring of CSV Tool | `customfield_10207` | textarea (ADF) | Flow B only |
 | Date of last validation/monitoring | `customfield_10069` | date | Format: YYYY-MM-DD |
-| Date of next validation/monitoring | `customfield_10070` | date | Auto-set by Jira |
+| Date of next validation/monitoring | `customfield_10070` | date | Auto-set, but only on *Tool approved* |
+
+`customfield_10070` is filled automatically as SOP 3.7.1 says, but the recalculation happens **on
+the Risk Manager's transition to *Tool approved***, not before. It does not move when
+`customfield_10069` is set, nor on the *Ready for approval* transition — a stale value while the
+ticket awaits approval is expected and must **not** be hand-edited.
+
+Verify after approval: expected value = date of last monitoring + the Table 6 interval. Observed
+working correctly (QM-823: 2026-08-04 + 6 months → 2027-02-04, moderate/not cloud-based). Only a
+value still wrong once the ticket is in *Tool approved* needs manual correction — that is the
+condition behind internal-audit finding IP 1 ("Unclear Monitoring Dates", 2025-11-19).
 
 ---
 
@@ -197,15 +218,39 @@ logical group). Reference existing supplier test docs where available.
 New CSV → evaluate → Analyse risks → Plan Validation
   → Validation (Approver transitions this)
   → Ready for approval
-  → Tool approved (Risk Manager transitions this)
-  → Monitoring
-  → [loop back to evaluate if re-validation triggered]
-  → Decommissioned (if tool retired)
+  → Tool approved (Risk Manager transitions this)     ─┐
+  → Monitoring                                         │ monitoring loop
+  → Ready for approval → Tool approved                ─┘
+  → Tool rejected (Risk Manager, if requirements no longer met) → decommission
+  → Decommissioned (terminal; records retained)
 ```
 
-**On Hold**: Can only be set by the Process Owner of TI-SOP-01 (Risk Manager).
-Use `getTransitionsForJiraIssue` to discover available transitions for the current status —
-transition names are stable but IDs may vary.
+### Monitoring loop — verified transition IDs
+
+A monitoring round **always** enters through *Monitoring*. There is no direct
+*Tool Approved* → *Ready for approval* transition; attempting one fails.
+
+| From | Transition name | ID | To |
+|---|---|---|---|
+| Tool Approved | `start monitoring ` (trailing space) | **161** | Monitoring |
+| Monitoring | `Still compliant` | **171** | Ready for approval |
+| Monitoring | `Updates required` | **191** | evaluate (re-validation) |
+
+Always call `getTransitionsForJiraIssue` first, and **match on `id`, not `name`** — at least one
+name carries a trailing space. The IDs above are stable for the QM CSV workflow; they were
+verified against a live ticket.
+
+**On Hold**: Can only be set by the Process Owner of TI-SOP-01 (Risk Manager). Per SOP section 2
+it is used when development is still in progress or validation is paused by external dependencies
+or resource constraints, and the reason must be documented in the ticket comments. Do not set or
+clear it yourself.
+
+### Decommissioning (SOP 3.8)
+
+Entry point is *Monitoring*, not a direct jump: set the ticket to *Monitoring*, document the
+impact assessment and any data migration, create a ticket on the **ICM board** for the
+decommissioning tasks, then set *Decommissioned* once the tool is removed or access is gone.
+Validation records are retained — never delete the ticket or blank its fields.
 
 ---
 
