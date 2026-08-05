@@ -33,7 +33,19 @@
 
     # Python environment
     (pkgs.python3.withPackages (python-pkgs: [
-      python-pkgs.pipx
+      # nixpkgs 26.05 still ships pipx 1.8.0, whose own test suite fails against the
+      # `packaging` version in this release (fixed upstream in pipx 1.9.0, see
+      # https://github.com/pypa/pipx/pull/1712). Bump the version/src to pick up that fix
+      # rather than disabling the checks.
+      (python-pkgs.pipx.overridePythonAttrs (_old: {
+        version = "1.9.0";
+        src = pkgs.fetchFromGitHub {
+          owner = "pypa";
+          repo = "pipx";
+          tag = "1.9.0";
+          hash = "sha256-AeGa+JMXEfhfCLKuj+Q0zJdQas8bxszalutdWZKf0sM=";
+        };
+      }))
     ]))
 
     # Go programming language
@@ -133,27 +145,6 @@
       meta = {
         description = "CLI tool for OX Security";
         mainProgram = "ox-cli";
-      };
-    })
-
-    # OpenSpec CLI - spec-driven development tool (openspec.dev / github.com/Fission-AI/OpenSpec)
-    # Installs the `openspec` binary; run `openspec init` in a repo, `openspec update` to sync skills
-    (pkgs.buildNpmPackage rec {
-      pname = "openspec";
-      version = "1.4.1";
-      src = pkgs.fetchFromGitHub {
-        owner = "Fission-AI";
-        repo = "OpenSpec";
-        rev = "v${version}";
-        hash = "sha256-VZZ/ukjciXqiebwei2JizyOnxx0T3IeoowFWElKec4o=";
-      };
-      nativeBuildInputs = [ pkgs.pnpm ];
-      npmDepsHash = "sha256-vGD8rZgqcgIKOAQTuZVHh6C+QTrxkyw9CgdJ4NOwSp8=";
-      meta = {
-        description = "AI-native system for spec-driven development";
-        homepage = "https://github.com/Fission-AI/OpenSpec";
-        license = pkgs.lib.licenses.mit;
-        mainProgram = "openspec";
       };
     })
   ];
